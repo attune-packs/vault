@@ -1,0 +1,23 @@
+ref: vault.health
+label: "Vault Health"
+description: "Read the root-namespace-only unauthenticated Vault health endpoint using the profile's endpoint and TLS settings."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: health.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials, description: "Pack-owned encrypted Attune Key profile ref."}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  healthy: {type: boolean, required: true}
+  status_code: {type: integer, required: true}
+  initialized: {type: boolean, required: true}
+  sealed: {type: boolean, required: true}
+  standby: {type: boolean, required: true}
+  performance_standby: {type: boolean, required: true}
+  version: {type: string}
+tags: [vault, health, status]

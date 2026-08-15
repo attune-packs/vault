@@ -1,0 +1,21 @@
+ref: vault.transit_encrypt
+label: "Vault Transit Encrypt"
+description: "Encrypt UTF-8 plaintext with an existing Transit key. Plaintext is secret input; ciphertext is persisted in Attune output."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: transit_encrypt.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  mount: {type: string, default: transit, required: true}
+  key_name: {type: string, required: true}
+  plaintext: {type: string, required: true, secret: true}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  ciphertext: {type: string, required: true}
+  key_version: {type: integer}
+tags: [vault, transit, encrypt]

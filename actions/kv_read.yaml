@@ -1,0 +1,28 @@
+ref: vault.kv_read
+label: "Vault KV Read To Key"
+description: "Read KV v1/v2 secret data directly into a pack-owned encrypted Attune Key. Secret values never enter output; all returned metadata is persisted by Attune."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: kv_read.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  mount: {type: string, default: secret, required: true}
+  path: {type: string, required: true}
+  kv_version: {type: integer, default: 2, enum: [1, 2], required: true}
+  secret_version: {type: integer, minimum: 1, description: "KV v2 version; omit for latest."}
+  output_key: {type: string, required: true, description: "Pack-owned encrypted Attune Key secret sink."}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  output_key: {type: string, required: true}
+  kv_version: {type: integer, required: true}
+  version: {type: integer}
+  created_time: {type: string}
+  lease_id: {type: string}
+  lease_duration_seconds: {type: integer}
+  renewable: {type: boolean}
+tags: [vault, kv, read, secret-sink]

@@ -1,0 +1,23 @@
+ref: vault.kv_destroy
+label: "Vault KV v2 Destroy"
+description: "Permanently destroy KV v2 versions. Requires exact DESTROY KV VERSIONS: mount/path#sorted,versions confirmation."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: kv_destroy.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  mount: {type: string, default: secret, required: true}
+  path: {type: string, required: true}
+  kv_version: {type: integer, default: 2, enum: [2], required: true}
+  versions: {type: array, required: true}
+  confirmation: {type: string, required: true}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  versions: {type: array, required: true}
+  destroyed: {type: boolean, required: true}
+tags: [vault, kv, destroy, irreversible]

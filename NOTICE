@@ -1,0 +1,13 @@
+HashiCorp Vault Pack for Attune
+Copyright 2026 Attune
+
+This pack is a security-focused translation informed by the action inventory of:
+
+  StackStorm Exchange Vault pack, version 2.1.0
+  https://github.com/StackStorm-Exchange/stackstorm-vault
+  revision d9176cbfcf3e3038796907a120ddfb1befbd64ef
+  licensed under the Apache License, Version 2.0
+
+The Attune implementation, contracts, tests, secret-sink model, and current API
+behavior differ substantially from the source. HashiCorp, Vault, and the Vault
+logo are trademarks of HashiCorp, Inc. This pack is not endorsed by HashiCorp.

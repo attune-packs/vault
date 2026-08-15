@@ -1,0 +1,39 @@
+ref: vault
+label: "HashiCorp Vault"
+name: "HashiCorp Vault"
+description: "Security-focused HashiCorp Vault actions with pack-owned encrypted Attune Key credential and secret sinks."
+version: "1.0.0"
+author: "Attune Team"
+email: "integrations@attune.io"
+system: false
+
+conf_schema: {}
+config: {}
+
+meta:
+  category: "security"
+  keywords: [vault, hashicorp, secrets, kv, approle, transit]
+  python_dependencies:
+    - "attune-sdk>=0.1.0"
+    - "hvac==2.4.0"
+  documentation_url: "https://github.com/attune-packs/vault"
+  repository_url: "https://github.com/attune-packs/vault"
+
+tags: [vault, hashicorp, secrets, security]
+runtime_deps: [python3]
+enabled: true
+dependencies: []
+
+testing:
+  enabled: true
+  discovery:
+    method: directory
+    path: tests
+  runners:
+    python:
+      type: unittest
+      entry_point: tests/test_pack.py
+      timeout: 120
+      result_format: simple
+  min_pass_rate: 1.0
+  on_failure: block

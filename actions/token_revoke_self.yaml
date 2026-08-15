@@ -1,0 +1,18 @@
+ref: vault.token_revoke_self
+label: "Vault Token Revoke Self"
+description: "Revoke the bootstrap token and its children. Requires exact confirmation REVOKE SELF."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: token_revoke_self.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  confirmation: {type: string, required: true, description: "Must equal REVOKE SELF."}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  revoked: {type: boolean, required: true}
+tags: [vault, token, revoke, destructive]

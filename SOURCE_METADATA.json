@@ -1,0 +1,21 @@
+{
+  "translation": {
+    "source_repository": "https://github.com/StackStorm-Exchange/stackstorm-vault",
+    "source_version": "v2.1.0",
+    "source_revision": "d9176cbfcf3e3038796907a120ddfb1befbd64ef",
+    "source_revision_date": "2025-02-27",
+    "source_license": "Apache-2.0",
+    "source_license_blob_sha": "8dada3edaf50dbc082c9a125058f25def75e625a",
+    "translation_note": "Clean Attune implementation informed by the source action inventory; modified for current APIs and a pack-owned Attune Key security model."
+  },
+  "verification": {
+    "verified_on": "2026-08-15",
+    "vault_current_release": "v2.0.4",
+    "vault_release_url": "https://github.com/hashicorp/vault/releases/tag/v2.0.4",
+    "vault_http_api": "v1",
+    "vault_http_api_url": "https://developer.hashicorp.com/vault/api-docs",
+    "hvac_version": "2.4.0",
+    "hvac_release_url": "https://github.com/hvac/hvac/releases/tag/v2.4.0",
+    "hvac_revision_reviewed": "09902dea41c2c6313cd7844be4d984c1514bd822"
+  }
+}

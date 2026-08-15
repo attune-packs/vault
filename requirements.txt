@@ -1,0 +1,2 @@
+attune-sdk>=0.1.0
+hvac==2.4.0

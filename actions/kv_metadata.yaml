@@ -1,0 +1,25 @@
+ref: vault.kv_metadata
+label: "Vault KV v2 Metadata"
+description: "Read bounded KV v2 version metadata. Custom metadata is intentionally excluded from persisted action output."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: kv_metadata.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  mount: {type: string, default: secret, required: true}
+  path: {type: string, required: true}
+  kv_version: {type: integer, default: 2, enum: [2], required: true}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  current_version: {type: integer}
+  oldest_version: {type: integer}
+  max_versions: {type: integer}
+  cas_required: {type: boolean, required: true}
+  delete_version_after: {type: string}
+  versions: {type: object, required: true}
+tags: [vault, kv, metadata]

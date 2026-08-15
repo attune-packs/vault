@@ -1,0 +1,23 @@
+ref: vault.approle_login
+label: "Vault AppRole Login To Key"
+description: "Log in with the AppRole profile and write the token or wrapping token directly to a pack-owned encrypted Attune Key. No token enters action output."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: approle_login.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials, description: "Pack-owned encrypted profile containing role_id and secret_id."}
+  output_key: {type: string, required: true, description: "Pack-owned encrypted Attune Key to create or update."}
+  wrap_ttl_seconds: {type: integer, minimum: 1, maximum: 3600}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  output_key: {type: string, required: true}
+  wrapped: {type: boolean, required: true}
+  wrap_ttl_seconds: {type: integer}
+  lease_duration_seconds: {type: integer}
+  renewable: {type: boolean}
+tags: [vault, approle, login, secret-sink]

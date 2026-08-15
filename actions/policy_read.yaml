@@ -1,0 +1,19 @@
+ref: vault.policy_read
+label: "Vault Policy Read"
+description: "Read an ACL policy. Policy text and paths are persisted in Attune action output."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: policy_read.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  name: {type: string, required: true}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  name: {type: string, required: true}
+  policy: {type: string, required: true}
+tags: [vault, policy, read]

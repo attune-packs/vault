@@ -1,0 +1,20 @@
+ref: vault.policy_delete
+label: "Vault Policy Delete"
+description: "Delete an ACL policy once. Requires exact DELETE POLICY: name confirmation."
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: policy_delete.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+parameters:
+  credential_key: {type: string, default: vault_credentials}
+  name: {type: string, required: true}
+  confirmation: {type: string, required: true}
+  timeout_seconds: {type: integer, default: 15, minimum: 1, maximum: 60}
+output_schema:
+  ok: {type: boolean, required: true}
+  name: {type: string, required: true}
+  deleted: {type: boolean, required: true}
+tags: [vault, policy, delete, destructive]
